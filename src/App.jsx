@@ -14,7 +14,7 @@ const App = () => {
           <button className="material-symbols-outlined">keyboard_arrow_down</button>
         </div>
         {/*Chatbot body*/}
-        <div className="chatbot-body">
+        <div className="chat-body">
           <div className="message bot-message">
             <Chatboticon/>
             <p className="message-text">

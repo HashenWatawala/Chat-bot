@@ -5,6 +5,10 @@ import ChatMessage from "./components/ChatMessage";
 
 const App = () => {
   const[chatHistory, setChatHistory] = useState([]);
+
+  const generateBotResponse = (history) =>{
+    console.log(history);
+  }
   return (
     <div className="container">
       <div className="chatbot-popup">
@@ -27,7 +31,7 @@ const App = () => {
           {chatHistory.map((chat, index)=>(<ChatMessage key={index} chat={chat}/>))}
         </div>
         <div className="chat-footer">
-          <ChatForm setChatHistory={setChatHistory}/>
+          <ChatForm setChatHistory={setChatHistory} generateBotResponse={generateBotResponse}/>
         </div>
       </div>
     </div>

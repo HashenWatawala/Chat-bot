@@ -76,6 +76,8 @@ body{
   padding: 25px 22px;
   height: 460px;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #DDD3F9 transparent;
 }
 
 .chat-body .message{

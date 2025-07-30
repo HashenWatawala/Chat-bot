@@ -1,10 +1,11 @@
-import React, {useRef, useState } from "react";
+import React, {useEffect, useRef, useState } from "react";
 import Chatboticon from "./components/Chatboticon";
 import ChatForm from "./components/ChatForm";
 import ChatMessage from "./components/ChatMessage";
 
 const App = () => {
   const [chatHistory, setChatHistory] = useState([]);
+  const [showChatbot, setShowChatbot] = useState(false);
   const chatBodyRef = useRef();
   const generateBotResponse = async (history) => {
     const updateHistory = (text) => {
@@ -38,9 +39,19 @@ const App = () => {
     }
   };
 
-  use
+  useEffect(()=>{
+    chatBodyRef.current.scrollTo({top: chatBodyRef.current.scrollHeight, behavior: "smooth"});
+  }, [chatHistory])
   return (
-    <div className="container">
+    <div className={`container ${showChatbot ? "show-chatbot" : ""}`}>
+      <button onClick={()=> setShowChatbot(prev => !prev)} id="chatbot-toggler">
+        <span className="material-symbols-outlined">
+          mode_comment
+        </span>
+        <span className="material-symbols-outlined">
+          close
+        </span>
+      </button>
       <div className="chatbot-popup">
         {/* chatbot header*/}
         <div className="chat-header">

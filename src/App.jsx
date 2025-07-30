@@ -8,10 +8,10 @@ const App = () => {
   const [showChatbot, setShowChatbot] = useState(false);
   const chatBodyRef = useRef();
   const generateBotResponse = async (history) => {
-    const updateHistory = (text) => {
+    const updateHistory = (text, isError = false) => {
       setChatHistory(prev => [
         ...prev.filter(msg => msg.text !== "Thinking..."),
-        { role: "model", text }
+        { role: "model", text, isError }
       ]);
     };
     history = history.map(({ role, text }) => ({ role, parts: [{ text }] }));
@@ -35,7 +35,7 @@ const App = () => {
         .trim();
       updateHistory(apiResponseText);
     } catch (error) {
-      console.log(error);
+      updateHistory(error.message, true);
     }
   };
 
@@ -59,7 +59,7 @@ const App = () => {
             <Chatboticon />
             <h2 className="logo-text">ChatBot</h2>
           </div>
-          <button className="material-symbols-outlined">
+          <button onClick={()=> setShowChatbot(prev => !prev)} className="material-symbols-outlined">
             keyboard_arrow_down
           </button>
         </div>
